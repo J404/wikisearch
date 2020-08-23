@@ -20,8 +20,10 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "local": "react-scripts start",
     "build": "react-scripts build",
+    "server": "cd server && (tsc index.ts && node index.js)",
+    "deploy": "npm run build && npm run server",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
