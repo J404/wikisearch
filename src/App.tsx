@@ -5,10 +5,14 @@ import './App.css';
 import Search from './search/Search';
 
 function App() {
+  const handleInput = (query: string): void => {
+    console.log(`Got input ${query}`);
+  }
+
   return (
     <div className="App">
       <h2>Wiki Search!</h2>
-      <Search/>
+      <Search handleInput={handleInput}/>
     </div>
   );
 }
