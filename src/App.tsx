@@ -4,9 +4,29 @@ import './App.css';
 // Components
 import Search from './search/Search';
 
+interface APIResults {
+  query: Query;
+}
+
+interface Query {
+  searchinfo: object;
+  search: SearchResult[];
+}
+
+interface SearchResult {
+  title: string;
+  snippet: string;
+}
+
 function App() {
-  const handleInput = (query: string): void => {
-    console.log(`Got input ${query}`);
+  const handleInput = async (query: string): Promise<void> => {
+    const response = await fetch(`http://localhost:5000/search/${query}`);
+    const results: APIResults = await response.json();
+    const searchResults = results.query.search;
+
+    for (let searchResult of searchResults) {
+      console.log(searchResult.title);
+    }
   }
 
   return (
