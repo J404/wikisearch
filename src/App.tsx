@@ -26,7 +26,7 @@ function App() {
     if (query.length === 0)
       return;
 
-    const response = await fetch(`http://localhost:5000/search/${query}`);
+    const response = await fetch(`http://localhost:3000/search/${query}`);
     const results: APIResults = await response.json();
     const searchResults = results.query.search;
 
