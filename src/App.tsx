@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 // Components
@@ -20,20 +20,32 @@ interface SearchResult {
 }
 
 function App() {
+  const [results, updateResults] = useState<SearchResult[]>([]);
+
   const handleInput = async (query: string): Promise<void> => {
+    if (query.length === 0)
+      return;
+
     const response = await fetch(`http://localhost:5000/search/${query}`);
     const results: APIResults = await response.json();
     const searchResults = results.query.search;
 
-    for (let searchResult of searchResults) {
-      console.log(searchResult.title);
-    }
+    updateResults(searchResults);
   }
 
   return (
     <div className="App">
       <h2>Wiki Search!</h2>
       <Search handleInput={handleInput}/>
+      {results.length > 0 ? (
+        results.map((searchResult, i) => 
+          <Result key={i}
+          title={searchResult.title}
+          snippet={searchResult.snippet}/>
+        )
+      ) : (
+        <p>No results!</p>
+      )}
     </div>
   );
 }
