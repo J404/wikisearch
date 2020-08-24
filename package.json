@@ -22,7 +22,7 @@
   "scripts": {
     "local": "react-scripts start",
     "build": "react-scripts build",
-    "server": "cd server && (tsc index.ts && node index.js)",
+    "server": "tsc server/index.ts && node server/index.js",
     "deploy": "npm run build && npm run server",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
