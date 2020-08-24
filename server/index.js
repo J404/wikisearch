@@ -45,6 +45,13 @@ var port = (process.env.PRODUCTION === 'false') ? 5000 : 3000;
 if (process.env.PRODUCTION === 'true') {
     app.use(Express.static(Path.join(__dirname, '../build')));
 }
+else {
+    app.use(function (req, res, next) {
+        res.header("Access-Control-Allow-Origin", process.env.REACT_SERVER);
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
+}
 app.get('/search/:query', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var url, response, result;
     return __generator(this, function (_a) {

@@ -10,6 +10,12 @@ const port: number = (process.env.PRODUCTION === 'false') ? 5000 : 3000;
 
 if (process.env.PRODUCTION === 'true') {
     app.use(Express.static(Path.join(__dirname, '../build')));
+} else {
+    app.use((req: Express.Request, res: Express.Response, next: Express.NextFunction) => {
+        res.header("Access-Control-Allow-Origin", process.env.REACT_SERVER);
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
 }
 
 app.get('/search/:query', async (req: Express.Request, res: Express.Response) => {
