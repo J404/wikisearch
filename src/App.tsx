@@ -3,6 +3,7 @@ import './App.css';
 
 // Components
 import Search from './search/Search';
+import Result from './result/Result';
 
 interface APIResults {
   query: Query;
