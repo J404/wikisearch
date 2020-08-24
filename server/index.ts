@@ -21,7 +21,14 @@ if (process.env.PRODUCTION === 'true') {
 app.get('/search/:query', async (req: Express.Request, res: Express.Response) => {
     const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(req.params.query)}&format=json`;
 
-    const response = await fetch(url);
+    let response;
+    try {
+        response = await fetch(url);
+    } catch (err) {
+        console.error(err);
+        return;
+    }
+    
     const result = await response.json();
 
     res.json(result);

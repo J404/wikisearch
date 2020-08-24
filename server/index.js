@@ -53,16 +53,24 @@ else {
     });
 }
 app.get('/search/:query', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var url, response, result;
+    var url, response, err_1, result;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 url = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + encodeURIComponent(req.params.query) + "&format=json";
-                return [4 /*yield*/, fetch(url)];
+                _a.label = 1;
             case 1:
-                response = _a.sent();
-                return [4 /*yield*/, response.json()];
+                _a.trys.push([1, 3, , 4]);
+                return [4 /*yield*/, fetch(url)];
             case 2:
+                response = _a.sent();
+                return [3 /*break*/, 4];
+            case 3:
+                err_1 = _a.sent();
+                console.error(err_1);
+                return [2 /*return*/];
+            case 4: return [4 /*yield*/, response.json()];
+            case 5:
                 result = _a.sent();
                 res.json(result);
                 return [2 /*return*/];
