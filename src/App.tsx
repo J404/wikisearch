@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
 
+// Components
+import Search from './search/Search';
+
 function App() {
   return (
     <div className="App">
-      This is from the react app!
+      <h2>Wiki Search!</h2>
+      <Search/>
     </div>
   );
 }
